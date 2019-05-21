@@ -1,0 +1,110 @@
+% Modelo de relatório de Cálculo Numérico - 2019
+\documentclass[a4paper,12pt]{article}
+
+% cabeçalhos PT-BR
+\usepackage[english,brazil]{babel}
+\usepackage[latin1]{inputenc}
+
+% Fontes
+\usepackage{times}
+%\usepackage{bookman} %default bookman
+\usepackage[T1]{fontenc}
+
+%%% pacotes da AMS
+\usepackage{amsfonts,amsmath,amsthm,amssymb}
+
+%%% somente na versão PDF
+%%% Para inclusão de gráficos
+\usepackage[pdftex]{graphicx}
+
+% cabeçalho
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{Relatório Final do Projeto <nome do projeto>}
+\fancyhead[RE,LO]{}
+\fancyfoot[CE,CO]{}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{2pt}
+
+% Para inclusão de algoritmos em R
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	language=R,                     % the language of the code
+	basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+	basicstyle=\ttfamily,           % Seta a fonte
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{black},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+	% will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 % show the filename of files included with \lstinputlisting;
+	% also try caption instead of title
+	keywordstyle=\color{blue},      % keyword style
+	commentstyle=\color{dkgreen},   % comment style
+	stringstyle=\color{mauve},      % string literal style
+	escapeinside={\%*}{*)},         % if you want to add a comment within your code
+	morekeywords={*,...}            % if you want to add more keywords to the set
+} 
+\begin{document}
+\thispagestyle{plain}
+\input{capa.tex}
+\pagestyle{fancy}
+\newpage
+\section{Resumo}
+
+Máximo de 5 linhas.
+
+\section{Introdução e contextualização}
+
+Aqui trazer a contextualização da área temática do projeto.
+
+\section{Descrição do(s) problema(s)}
+
+Descreva aqui os problemas de sua área temática, assim como as equações, gráficos, tabelas, etc. Ou seja, coloque aqui os problemas que foram atacados com Cálculo Numérico.
+
+\section{Materiais e métodos}
+
+Aponte aqui os métodos numéricos que foram necessários para resolver o(s) problema(s), apontando o \textit{setup} dos parâmetros, constantes, etc. Por exemplo, se resolver um sistema não-linear, explicitar o sistema aqui.
+
+Quanto aos materiais: (i) dados, apontar a fonte, (ii) softwares de apoio, apontar o link para download. 
+
+Obs: se a fonte for de trabalhos de IC e/ou empresa, estes podem ser omitidos a critério de vocês. Apenas indiquem isso nesta seção.
+
+\section{Resultados}
+
+São os resultados. Tragam aqui os gráficos, dados filtrados, resolução de sistemas, etc. Procurem descrever, ao máximo, os erros utilizados, número de iterações necessárias e aproximações iniciais (quando se aplicam).
+
+\section{Considerações finais}
+
+Tragam, do ponto de vista do Cálculo Numérico, os resultados do projeto. Podem apontar aqui suas dificuldades (caso hajam) de implementação, interpretação, aplicação, etc.
+
+\section{Bibliografia}
+
+Procure utilizar as normas ABNT NBR 6023:2002 (referência) e ABNT NBR 10520:2002
+(citações).
+
+\section{Algoritmos em Linguagem R}
+
+\begin{lstlisting}
+Código
+...
+...
+\end{lstlisting}
+
+\end{document}
