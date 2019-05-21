@@ -17,32 +17,30 @@
 gauss_elimination <- function(A, b){
     n <- dim(b)[1]
     # initiates it here because of scope
-    X <- matrix(rep(1,n),n,1)
-    expanded <- cbind(A, b)
+    X <- matrix(rep(0,n),n,1)
     
     # makes the matrix to be in 
     # echelon form(triangular form)
-    for (i in 1:n-1) {
-	pivot <- A[i,i]
-	# Couldn't find a way to get 
-	# only the multipliers we want
-	mult <- A[,i]/rep(n,pivot)	
-	for(j in i+1:n){
-	    expanded[,j] <- expanded[,j] - mult[j]*expanded[,i]
+    for (k in 1:(n-1)) {
+	for (i in (k+1):n){
+	    mult <- A[i,k]/A[k,k]
+	    A[i,k] = 0
+	    for(j in (k+1):n){
+		A[i,j] <- (A[i,j] - (mult*A[k,j]))
+	    }
+	    b[i] <- b[i] - mult*b[k]
 	}
     }
     
     # The main solution
-    for(i in n:1) {
+    X[n] <- b[n]/A[n,n]
+    for (k in (n-1):1){
 	sum <- 0
-	for(j in n:1){
-	    sum <- sum + expanded[i,j]*X[j,1]
+	for(j in (k+1):n){
+	    sum <- sum + A[k,j]*X[j]
 	}
-
-	# takes the last column of the expanded(b)
-	# subtracts de sum
-	X[i] <- expanded[i,n+1] - sum
-    }   
+	X[k] <- (b[k] - sum)/A[k,k]
+    }
 
     return (X)
 }
