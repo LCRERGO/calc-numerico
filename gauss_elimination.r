@@ -1,3 +1,4 @@
+# Name: gauss_elimination.r
 # Desc.: Solves a linear system with the
 # Gauss elmination method.
 # Group: 2
@@ -12,6 +13,7 @@
 # Ex.: n <- 3
 # A <- matrix(c(1,2,3,2,1,-1,1,-1,-1), n, n)
 # b <- matrix(c(3,0,-2), n, 1)
+#
 # X <- matrix(c(0,1,1), n, 1)
 
 gauss_elimination <- function(A, b){
