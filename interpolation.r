@@ -38,3 +38,35 @@ interpolation_vandermonde <- function(x,y){
 
     return (A)
 }
+
+# I: A vector of the x elements(x)
+# A vector of the y elements(y)
+# O: A vector with the coefitients
+# of the polynomial(A)
+interpolation_lagrange <- function(x, y){
+    n <- length(x)
+    # Starts the auxiliary variables
+    numerator <- rep(1, n)
+    denominator <- rep(1, n)
+    
+    # iterates over the matrix
+    # to calculate the L values
+    for (j in 1:n) {
+	for (i in 1:n) {
+	    if (i != j){
+		L[j] <- L[j] * (p - x[i])
+	    }
+	}
+	for(i in 1:n){
+	    if(i != j){
+		L[j] <- L[j]/(x[j] - x[i])
+	    }
+	}
+    }
+
+    A <- 0
+    for(j in 1:n){
+	A <- A + y[j]*L[j]
+    }
+
+}

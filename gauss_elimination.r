@@ -7,7 +7,7 @@
 # 
 # I: A matrix of the coeficients(A),
 # a column matrix(b),
-# A column matrix with the solution
+# O: A column matrix with the solution
 # value(X)
 # 
 # Ex.: n <- 3
