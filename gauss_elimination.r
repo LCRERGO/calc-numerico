@@ -17,6 +17,8 @@
 # X <- matrix(c(0,1,1), n, 1)
 
 gauss_elimination <- function(A, b){
+    start_time = Sys.time()
+    iter = 0
     n <- dim(b)[1]
     # initiates it here because of scope
     X <- matrix(rep(0,n),n,1)
@@ -25,6 +27,7 @@ gauss_elimination <- function(A, b){
     # echelon form(triangular form)
     for (k in 1:(n-1)) {
 	for (i in (k+1):n){
+	    iter <- iter + 1
 	    mult <- A[i,k]/A[k,k]
 	    A[i,k] = 0
 	    for(j in (k+1):n){
@@ -40,9 +43,13 @@ gauss_elimination <- function(A, b){
 	sum <- 0
 	for(j in (k+1):n){
 	    sum <- sum + A[k,j]*X[j]
+	    iter = iter + 1;
 	}
 	X[k] <- (b[k] - sum)/A[k,k]
     }
+
+    end_time = Sys.time();
+    timer = end_time - start_time;
 
     return (X)
 }
