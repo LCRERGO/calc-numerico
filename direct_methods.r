@@ -68,21 +68,21 @@ gauss_elimination <- function(A, b){
 # value(X)
 # 
 # Ex.: n <- 3
-# A <- matrix(c(1,2,3,2,1,-1,1,-1,-1), n, n)
+# U <- matrix(c(1,2,3,2,1,-1,1,-1,-1), n, n)
 # b <- matrix(c(3,0,-2), n, 1)
 #
 # X <- matrix(c(0,1,1), n, 1)
 lu_factoration <- function(U,b){
-    L <- matrix(0,dim,dim)
-    y <- matrix(0,dim,1)
-    x <- matrix(0,dim,1)
+    n <- dim(b)[1]
+    L <- matrix(0,n,n)
+    y <- matrix(0,n,1)
+    x <- matrix(0,n,1)
 
     start_time <- Sys.time()
     iter <- 0
-    n <- dim(b)[1]
 
-    for(i in 1:dim){ # Columns
-	for(j in 1:dim){ # Lines
+    for(i in 1:n){ # Columns
+	for(j in 1:n){ # Lines
 
 	    iter <- iter + 1
 	    if(j > i ){
@@ -101,7 +101,7 @@ lu_factoration <- function(U,b){
 
     y[1] <- b[1,1]/L[1,1]
     iter <- iter + 1
-    for (i in 2:dim){
+    for (i in 2:n){
 	sum <- 0
 	for (j in 1:(i-1)){
 	    iter <- iter + 1
@@ -110,11 +110,11 @@ lu_factoration <- function(U,b){
 	y[i] <- (b[i,1] - sum)/L[i,i]
     }
 
-    x[dim] <- y[dim]/U[dim,dim]
+    x[n] <- y[n]/U[n,n]
     iter <- iter + 1
-    for (k in (dim-1):1){
+    for (k in (n-1):1){
 	sum <- 0
-	for (j in (k+1):dim){
+	for (j in (k+1):n){
 	    sum <- sum + U[k,j]*x[j]
 	    iter <- iter + 1
 	}
