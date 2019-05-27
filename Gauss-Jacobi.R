@@ -18,49 +18,49 @@
 
 jacobi <- function(A,b,xk,error){
 	xk_new <- matrix(0,3,1);
-	iter = 0;
-	n = dim(b)[1];
-	d = error + 1;
-	flag = 1;  
+	iter <- 0;
+	n <- dim(b)[1];
+	d <- error + 1;
+	flag <- 1;  
 
 	# Test if it is possible to solve
 	for (i in 1:n){
-		sum = 0;
+		sum <- 0;
 		for (j in 1:n){
 			if (i!=j)
-				sum = sum + abs(A[i,j]);
+				sum <- sum + abs(A[i,j]);
 		}
 		if (sum/abs(A[i,i])>=1)
-			flag = 0;
+			flag <- 0;
 	}
 
 
 	# The main solution
 	if (flag){
-		start_time = Sys.time();
+		start_time <- Sys.time();
 		while(d>error){
 			for (i in 1:n){
-				sum = 0;
+				sum <- 0;
 				for (j in 1:n){
 					if (i!=j){
-					sum = sum + A[i,j] * xk[j];
-					iter = iter + 1;
+					sum <- sum + A[i,j] * xk[j];
+					iter <- iter + 1;
 					}
 				}
-			xk_new[i] = (1/A[i,i]) * (b[i]-sum);
+			xk_new[i] <- (1/A[i,i]) * (b[i]-sum);
 			}
 	
-		max1 = max(abs(xk_new - xk));
-		max2 = max(abs(xk_new));
-		d = max1/max2;
+		max1 <- max(abs(xk_new - xk));
+		max2 <- max(abs(xk_new));
+		d <- max1/max2;
 
-		xk = xk_new;
+		xk <- xk_new;
 		}
 	
-		end_time = Sys.time()
-		timer = end_time - start_time;
+		end_time <- Sys.time()
+		timer <- end_time - start_time;
 		
-		retorno = c(xk_new,timer,iter);
+		retorno <- c(xk_new,timer,iter);
 		return (retorno);
 	}else 
 	cat("This cant be solved by the method");
