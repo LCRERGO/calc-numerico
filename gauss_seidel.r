@@ -17,7 +17,7 @@
 # X <- matrix(c(0.9999815,-2.000022,0.99973), n, 1)
 
 gauss_seidel <- function(A,B,xk,error){
-    xk_new <- matrix(0,3,1)
+    new_xk <- matrix(0,3,1)
     iter = 0;
     n = dim(B)[1]
     k = 0
@@ -28,17 +28,21 @@ gauss_seidel <- function(A,B,xk,error){
     beta <- matrix(0,3,1)
 
    	for (i in 2:n) {
-   		beta[1] = beta[1] + ( abs(A[1,i]) / abs(A[1,1]) ); 
+   		beta[1] = beta[1] + abs(A[1,i]); 
    	}
+   	beta[1] = beta[1] / abs(A[1,1]);
 
    	for (i in 2:n) {
-   		for (j in 1:i-1) {
+   		for (j in 1:(i-1)) {
    			beta[i] = beta[i] + (abs(A[i,j])*beta[j]);
    		}
 
-   		for (j in i+1:n) {
-   			beta[i] = beta[i] + abs(A[i,j]);
-   		}
+      if(i < n){
+        for (j in (i+1):n) {
+          beta[i] = beta[i] + abs(A[i,j]);
+        }
+      }
+   		
 
    		beta[i] = beta[i] / abs(A[i,i]);
    	}
