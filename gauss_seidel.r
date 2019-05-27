@@ -25,15 +25,28 @@ gauss_seidel <- function(A,B,xk,error){
     flag = 1;  
 
     # Test if it is possible to solve
-    for (i in 1:n){
-	sum = 0
-	for (j in 1:n){
-	    if (i != j)
-		sum = sum + abs(A[i,j])
-	}
-	if (sum/abs(A[i,i]) >= 1)
-	    flag = 0
-    }
+    beta <- matrix(0,3,1)
+
+   	for (i in 2:n) {
+   		beta[1] = beta[1] + ( abs(A[1,i]) / abs(A[1,1]) ); 
+   	}
+
+   	for (i in 2:n) {
+   		for (j in 1:i-1) {
+   			beta[i] = beta[i] + (abs(A[i,j])*beta[j]);
+   		}
+
+   		for (j in i+1:n) {
+   			beta[i] = beta[i] + abs(A[i,j]);
+   		}
+
+   		beta[i] = beta[i] / abs(A[i,i]);
+   	}
+
+   	b = max(beta);
+
+   	if(b >= 1)
+   		flag = 0;
 
     # The main solution
     if (flag){
