@@ -283,8 +283,8 @@ gauss_seidel <- function(A,B,xk,error){
 				    		sum = sum + A[i,j] * new_xk[j]
 				    	else
 				    		sum = sum + A[i,j] * xk[j]
+				    	iter = iter + 1
 				    	}
-				    iter = iter + 1
 					}
 				new_xk[i] = (1/A[i,i]) * (B[i]-sum)
 			    }
@@ -365,3 +365,12 @@ calculate <- function(x,y){
 		sum <- sum + (x^(i-1))*y[i]
 	return (sum)
 }
+
+begin = Sys.time()
+retorno = interpolation_vandermonde(dados[,1],dados[,2],2)
+end = Sys.time()
+time = end - begin
+print(time)
+print(retorno)
+
+print(calculate(2022,retorno))
